@@ -1,0 +1,333 @@
+.content{
+    width: 900px;
+    height: 600px;
+    position: absolute;
+    left:50%;
+    bottom: 0;
+    margin-left:-450px;
+    /*background: rgba(255,255,255,0.2);*/
+    /*任意元素居中*/
+    /*transform: translateX(-50%);*/
+}
+.go{
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    z-index: 999;
+}
+.more{
+    position: fixed;
+    bottom:60px;
+    right: 60px;
+    z-index: 999;
+    /*2.调用动画序列*/
+    /*逆播放也会记录在播放次数内*/
+    animation: more 0.4s linear infinite alternate;
+}
+/*更多容器的动画*/
+/*1.定义一个动画序列*/
+@keyframes more {
+    from{
+        transform: translateY(-10px);
+    }
+    to{
+        transform: translateY(10px);
+    }
+}
+
+
+/*第一屏*/
+.section:nth-child(1){
+    background: url("../images/01-bg.png") no-repeat center bottom;
+}
+.section:nth-child(1) .fly{
+    position: absolute;
+    right: -50px;
+    top: 0;
+    animation: fly-01 0.8s linear infinite alternate;
+}
+.section:nth-child(1) .sofa{
+    position: absolute;
+    left: 180px;
+    top: 140px;
+    animation: sofa-01 0.8s linear infinite alternate;
+}
+.section:nth-child(1) .goods{
+    position: absolute;
+    bottom: 120px;
+    left:50%;
+    margin-left:-412px;
+}
+/*初始化的是就该出现动画*/
+@keyframes sofa-01 {
+    from{
+        transform: translateY(-10px);
+    }
+    to{
+        transform: translateY(10px);
+    }
+}
+@keyframes fly-01 {
+    from{
+        transform: translateY(-20px);
+    }
+    to{
+        transform: translateY(20px);
+    }
+}
+
+.section:nth-child(2){
+    background: url("../images/02-bg.png") no-repeat center bottom;
+}
+.section:nth-child(2) .text{
+    position: absolute;
+    left: 50%;
+    top: 0;
+    margin-left:-180px;
+}
+.section:nth-child(2) .text img{
+    position: absolute;
+}
+.section:nth-child(2) .text img:last-child{
+    opacity: 0;
+}
+.section:nth-child(2) .search{
+    position: absolute;
+    right: 170px;
+    top: 120px;
+    /*转换原地*/
+    transform-origin: right top;
+    /*transform: scale(0.7);*/
+    /*transform: translate(-170px,130px);*/
+    /*transform: translate(1000px,130px);*/
+    z-index: 900;
+    opacity: 0;
+}
+.section:nth-child(2) .search img:last-child{
+    position: absolute;
+    left: 100px;
+    top: 3px;
+    opacity: 0;
+}
+.section:nth-child(2) .goods{
+    position: absolute;
+    left:50%;
+    margin-left:-220px;
+    bottom: 208px;
+    transform: scale(0);
+    transform-origin: right bottom;
+}
+.section:nth-child(2) .sofa{
+    position: absolute;
+    top:134px;
+    left: 291px;
+    transform: scale(0.5);
+    opacity: 0;
+    z-index: 900;
+}
+/*第二屏动画*/
+.section:nth-child(2).now .text img:first-child{
+    display: none;
+}
+.section:nth-child(2).now .text img:last-child{
+    transition: opacity 0.5s;
+    opacity: 1;
+}
+.section:nth-child(2).now .search{
+    /*forwards backwards 控制动画播放结束的状态（保持当前状态  回到初始状态）*/
+    animation: search-02 3s linear forwards;
+}
+.section:nth-child(2).now .search img:last-child{
+    opacity: 1;
+    transition: opacity 1s linear 1s;
+}
+.section:nth-child(2).now .goods{
+    transform: scale(1);
+    transition: transform 1s linear 2s;
+}
+@keyframes search-02 {
+    from{
+        transform: translate(1000px,130px);
+        opacity: 1;
+    }
+    33.33%{
+        transform: translate(-170px,130px);
+        opacity: 1;
+    }
+    66.67%{
+        transform: translate(-170px,130px);
+        opacity: 1;
+    }
+    to{
+        transform: scale(0.7);
+        opacity: 1;
+    }
+}
+.section:nth-child(2) .sofa.animated{
+    animation: sofa-02-03 1s linear/* forwards*/;
+}
+@keyframes sofa-02-03 {
+    from{
+        opacity: 1;
+    }
+    to{
+        opacity: 1;
+        transform: translate(-75px,700px);
+    }
+}
+
+
+/*第三屏*/
+.section:nth-child(3){
+    background: url("../images/03-bg.png") no-repeat center bottom;
+}
+.section:nth-child(3) .sofa{
+    position: absolute;
+    left: 210px;
+    top: 195px;
+    opacity: 0;
+    z-index: 900;
+}
+.section:nth-child(3) .change{
+    position: absolute;
+    right: 116px;
+    top: 285px;
+    width: 296px;
+    height: 131px;
+}
+.section:nth-child(3) .change img:last-child{
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}
+.section:nth-child(3) .cart{
+    position: absolute;
+    right: 194px;
+    bottom: 104px;
+    width: 218px;
+    height: 58px;
+}
+.section:nth-child(3) .cart img:last-child{
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}
+
+.section:nth-child(3).now .sofa{
+    opacity: 1;
+}
+.section:nth-child(3).now .change img:first-child{
+     display: none;
+ }
+.section:nth-child(3).now .change img:last-child{
+    opacity: 1;
+}
+.section:nth-child(3).now .cart img:first-child{
+    display: none;
+}
+.section:nth-child(3).now .cart img:last-child{
+    opacity: 1;
+}
+
+.section:nth-child(3) .sofa.animated{
+    animation: sofa-03-04 1s linear;
+}
+@keyframes sofa-03-04 {
+    from{
+        opacity: 1;
+    }
+    to{
+        transform: translate(200px,650px) rotate(45deg);
+    }
+}
+
+/*第四屏*/
+.section:nth-child(4){
+    background: url("../images/04-bg.png") no-repeat center bottom;
+}
+.section:nth-child(4) .cloud{
+    position: absolute;
+    top: -50px;
+    left: 0;
+    animation: cloud-04 30s linear infinite alternate;
+}
+@keyframes cloud-04 {
+    from{
+        transform: translateX(-50%);
+    }
+    to{
+        transform: translateX(50%);
+    }
+}
+.section:nth-child(4) .address{
+    position: absolute;
+    left: 50%;
+    top: 200px;
+    margin-left:-142px;
+    display: none;
+}
+.section:nth-child(4) .address img:last-child{
+    position: absolute;
+    left: 50%;
+    top: 60px;
+    margin-left:-87px;
+    display: none;
+}
+.section:nth-child(4) .text{
+    position: absolute;
+    left: 50%;
+    top: 100px;
+    width: 429px;
+    height: 31px;
+    margin-left:-210px;
+}
+.section:nth-child(4) .text img:last-child{
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: none;
+}
+.section:nth-child(4) .cart{
+    position: absolute;
+    left: 50%;
+    bottom: 50px;
+    margin-left:-204px;
+    z-index: 901;
+}
+.section:nth-child(4) .sofa{
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translate(420px,200px) rotate(45deg);
+    opacity: 0;
+}
+
+.section:nth-child(4).now .sofa{
+    opacity: 1;
+    animation: sofa-04 2s linear forwards;
+}
+
+/*第四屏动画*/
+.section:nth-child(4).now .cart{
+    animation: cart-04 2s linear forwards;
+}
+@keyframes sofa-04 {
+    from{
+    }
+    to{
+        transform: translate(1420px,200px) rotate(45deg);
+    }
+}
+@keyframes cart-04 {
+    from{
+    }
+    to{
+        transform: translateX(1000px);
+    }
+}
+
